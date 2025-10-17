@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 
 // approach 1
 import connectDB from "./db/index.js";
+import { app } from "./app.js";
 
 dotenv.config({ path: "./.env" });
 connectDB()
@@ -24,7 +25,7 @@ const app = express();
 
 (async () => {
     try {
-        await ongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`);
+        await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`);
         app.on("error", (err) => {
             console.log("Error :", err);
         });
